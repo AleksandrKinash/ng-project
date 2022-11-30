@@ -7,37 +7,39 @@
       "@angular-eslint/schematics"
     ]
   },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "skipTests": true,
+      "changeDetection": "OnPush",
+      "viewEncapsulation": "None"
+    },
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
+    },
+    "@schematics/angular:interceptor": {
+      "skipTests": true
+    },
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:resolver": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
   "newProjectRoot": "projects",
   "projects": {
     "preview": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        }
-      },
       "root": "projects/preview",
       "sourceRoot": "projects/preview/src",
       "prefix": "app",
@@ -64,6 +66,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/preview/src/environments/environment.ts",
+                  "with": "projects/preview/src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -76,7 +84,27 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": {
+                  "inline": true
+                }
+              },
+              "outputHashing": "all",
+              "namedChunks": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "extractLicenses": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "hidden": true,
+                "vendor": true
+              }
             },
             "development": {
               "buildOptimizer": false,
