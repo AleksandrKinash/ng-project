@@ -19,6 +19,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh-pages": "ng build --output-path docs --base-href /ng-project/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint --fix"
